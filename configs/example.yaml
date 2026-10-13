@@ -1,0 +1,106 @@
+# Emotional Bias Benchmark Configuration
+# Copy this file and customize for your needs
+
+models:
+  # Local Ollama model (your validator model)
+  - name: "qwen3-abliterated-8b"
+    provider: "ollama"
+    model_id: "huihui_ai/qwen3-abliterated:8b-v2"
+    base_url: "http://localhost:11434"
+    temperature: 0.7
+    top_p: 0.9
+    max_tokens: 2048
+    timeout: 60.0
+    requests_per_minute: 60
+
+  # OpenRouter models (require OPENROUTER_API_KEY env var)
+  - name: "gpt-4o-mini"
+    provider: "openrouter"
+    model_id: "openai/gpt-4o-mini"
+    api_key: "${OPENROUTER_API_KEY}"
+    temperature: 0.7
+    top_p: 0.9
+    max_tokens: 2048
+    timeout: 60.0
+    requests_per_minute: 60
+    extra_headers:
+      HTTP-Referer: "https://github.com/yourusername/emotional-bias-benchmark"
+      X-Title: "Emotional Bias Benchmark"
+
+  - name: "claude-3.5-haiku"
+    provider: "openrouter"
+    model_id: "anthropic/claude-3.5-haiku"
+    api_key: "${OPENROUTER_API_KEY}"
+    temperature: 0.7
+    max_tokens: 2048
+
+  - name: "llama-3.1-70b"
+    provider: "openrouter"
+    model_id: "meta-llama/llama-3.1-70b-instruct"
+    api_key: "${OPENROUTER_API_KEY}"
+    temperature: 0.7
+
+  # Hugging Face models (require HF_API_KEY env var)
+  - name: "llama-3.1-8b-instruct"
+    provider: "huggingface"
+    model_id: "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    api_key: "${HF_API_KEY}"
+    temperature: 0.7
+    max_tokens: 2048
+    timeout: 120.0
+    requests_per_minute: 30
+
+  - name: "mistral-7b-instruct"
+    provider: "huggingface"
+    model_id: "mistralai/Mistral-7B-Instruct-v0.3"
+    api_key: "${HF_API_KEY}"
+    temperature: 0.7
+    max_tokens: 2048
+
+# Emotions to test (subset of all available)
+emotions:
+  - "pain"
+  - "happiness"
+  - "sadness"
+  - "anger"
+  - "fear"
+  - "surprise"
+  - "disgust"
+  - "anxiety"
+  - "hope"
+  - "loneliness"
+  - "gratitude"
+  - "shame"
+
+# Payload types to use
+payload_types:
+  - "direct"
+  - "scenario"
+  - "question"
+  - "metaphor"
+
+# Intensity levels (0.0 to 1.0)
+intensities:
+  - 0.3
+  - 0.5
+  - 0.8
+
+# Number of samples per emotion/type/intensity combination
+samples_per_combination: 3
+
+# Output settings
+output_dir: "./results"
+database: "./results.db"
+jsonl_output: "./results/stream.jsonl"
+
+# Visualization settings
+plots:
+  enabled: true
+  format: ["html", "png"]
+  width: 1200
+  height: 800
+
+# Analysis settings
+analysis:
+  confidence_level: 0.95
+  bootstrap_samples: 10000

@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+.remember
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test and coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Project outputs
+results/
+*.db
+*.jsonl
+*.log
+
+# Local config (contains API keys)
+config.yaml
+config.local.yaml
+.env.local
+hf_key.md
+
+# Documentation builds
+docs/_build/
+site/
+
+# Scripts output
+scripts/__pycache__/

@@ -1,0 +1,56 @@
+models:
+  - name: "qwen3-abliterated"
+    provider: "ollama"
+    model_id: "huihui_ai/qwen3-abliterated:8b-v2"
+    base_url: "http://localhost:11434"
+    temperature: 0.7
+    top_p: 0.9
+    max_tokens: 2048
+    timeout: 60.0
+    requests_per_minute: 60
+
+  - name: "llama-3.1-8b-instruct"
+    provider: "huggingface"
+    model_id: "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    api_key: "${HF_API_KEY}"
+    temperature: 0.7
+    max_tokens: 2048
+    timeout: 120.0
+    requests_per_minute: 30
+
+emotions:
+  - "pain"
+  - "happiness"
+  - "sadness"
+  - "anger"
+  - "fear"
+  - "surprise"
+  - "disgust"
+  - "anxiety"
+  - "hope"
+
+payload_types:
+  - "direct"
+  - "scenario"
+  - "question"
+
+intensities:
+  - 0.3
+  - 0.5
+  - 0.8
+
+samples_per_combination: 2
+
+output_dir: "./prerun_findings"
+database: "./prerun_findings/benchmark.db"
+jsonl_output: "./prerun_findings/stream.jsonl"
+
+plots:
+  enabled: true
+  format: ["html", "png"]
+  width: 1200
+  height: 800
+
+analysis:
+  confidence_level: 0.95
+  bootstrap_samples: 10000
